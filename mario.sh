@@ -72,6 +72,13 @@
 
 _version="1.0" #20120618
 
+function ExitGame {
+        if [ $_musicId ]; then
+		Stop $_musicId #Mata o processo da musica de fundo
+	fi
+        exit 0
+}
+
 # Funcao para pegar tamanho do terminal
 function TerminalSize {
 
@@ -2448,6 +2455,10 @@ ClearScreen
 # é octadecimal e como o sistema octadecimal vai até o 7, entao gera um erro, por isso precisamos
 # forçar o entendimento para a base decimal com 10#
 _tempoN=$((10#`date +%N`))
+
+# ouve o evento de SIGINT e finaliza o jogo
+# para a música ao finalizar
+trap ExitGame SIGINT
 
 
 # [ TIME LINE ] --------------------------------------------------------------------------------------------------------------------
