@@ -72,6 +72,15 @@
 
 _version="1.0" #20120618
 
+function InterrompeJogo {
+    if [ $_musicId ]; then
+		Stop $_musicId #Mata o processo da musica de fundo
+	fi
+	Sair
+}
+
+trap InterrompeJogo SIGINT
+
 # Funcao para pegar tamanho do terminal
 function TerminalSize {
 
